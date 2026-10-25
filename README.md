@@ -1,71 +1,28 @@
-# Smart Campus App
+# Smart Campus / College Companion App
 
-A Flutter college companion app: timetable, attendance tracker, notice board, and assignment tracker.
-Data is stored locally on-device using Hive (works fully offline, no backend setup required to get started).
+Android app built with Flutter that keeps a student's college information in one place. It works fully offline.
 
-## What's included
+**Developer:** Abhishek (NN25MCA002), Department of MCA, NMAM Institute of Technology, Nitte
 
-```
-lib/
-  models/          -> data classes (Subject, TimetableEntry, AttendanceRecord, Notice, Assignment)
-  providers/        -> AppDataProvider: all state management + Hive read/write logic
-  screens/           -> HomeScreen (dashboard), TimetableScreen, AttendanceScreen, NoticesScreen, AssignmentsScreen
-  main.dart          -> app entry point
-pubspec.yaml         -> dependencies
-```
-
-## IMPORTANT — this zip has no android/ios folders yet
-
-This zip contains only the Dart source code (`lib/`) and `pubspec.yaml`, because generating
-the native Android/iOS project wrapper requires the Flutter SDK, which isn't available in the
-environment that built this. You need to generate that wrapper yourself — takes 2 minutes.
-
-## Setup steps
-
-1. **Install Flutter SDK** (if not already installed): https://docs.flutter.dev/get-started/install
-   Verify with:
-   ```
-   flutter doctor
-   ```
-
-2. **Create a new empty Flutter project** in a fresh folder:
-   ```
-   flutter create smart_campus_app
-   cd smart_campus_app
-   ```
-
-3. **Replace the generated `lib/` folder and `pubspec.yaml`** with the ones from this zip
-   (delete the default `lib/main.dart` first, then copy everything from this zip's `lib/`
-   and `pubspec.yaml` into your new project folder, overwriting `pubspec.yaml`).
-
-4. **Install dependencies:**
-   ```
-   flutter pub get
-   ```
-
-5. **Run it** (with an emulator running, or a phone connected via USB with USB debugging on):
-   ```
-   flutter run
-   ```
-
-That's it — the app opens straight into the dashboard with a couple of sample entries
-pre-loaded so it's not empty on first launch.
-
-## Next steps to extend it (good for viva/demo talking points)
-
-- **Firebase integration**: swap Hive calls in `AppDataProvider` for Firestore calls to get
-  real multi-device sync and a proper admin/student split. The UI layer won't need to change
-  since screens only call `AppDataProvider` methods.
-- **Push notifications**: add `flutter_local_notifications` or Firebase Cloud Messaging to
-  alert students when a new notice is posted or an assignment is due soon.
-- **Authentication**: add Firebase Auth or a simple login screen so each student only sees
-  their own attendance/assignments.
-- **Charts**: `fl_chart` is already in `pubspec.yaml` — you can add a pie/bar chart on the
-  Attendance screen to visualize overall attendance across all subjects.
+## Features
+- **Dashboard:** today's classes, pending assignments and the latest notice
+- **Timetable:** weekly schedule with day-wise tabs; add classes with room and time
+- **Attendance:** mark Present/Absent per subject; percentage shown, in red when below 75%
+- **Notice Board:** post and view notices, newest first
+- **Assignments:** add with due date, mark complete, overdue ones highlighted
 
 ## Tech stack
+Flutter (Dart), Provider (state management), Hive (local offline database), uuid, intl, fl_chart
 
-- Flutter (Dart)
-- Provider (state management)
-- Hive (local NoSQL storage, offline-first)
-- fl_chart (included, ready for charts)
+## Project structure
+- `lib/models` - data classes
+- `lib/providers` - app state and Hive storage
+- `lib/screens` - the five app screens
+- `lib/main.dart` - app entry point
+
+## How to run
+1. Install the Flutter SDK and Android Studio (with an emulator)
+2. Download or clone this repository
+3. In the project folder run: `flutter create .` (adds the android folder)
+4. Run: `flutter pub get`
+5. Start an emulator or connect a phone, then run: `flutter run`
